@@ -5,7 +5,7 @@ import bgImage from '../static/images/bg-image.png';
 import Footer from '../components/footer';
 import Header from '../components/header';
 import StickyHeadTable from '../components/table';
-import { read, write, update } from '../service';
+import { read, update, write } from '../service';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -74,13 +74,13 @@ const Main = props => {
     <div className={classes.root}>
       <Grid className={classes.grid} container spacing={3}>
         <Grid className={classes.grid} style={{ minHeight: 75 }} item xs={12}>
-          <Header/>
+          <Header add={add}/>
         </Grid>
         <Grid className={classes.grid} item xs={12}>
           <StickyHeadTable rows={rows} like={like} add={add}/>
         </Grid>
         <Grid className={classes.grid} item xs={12}>
-          <Footer fixed/>
+          <Footer/>
         </Grid>
       </Grid>
     </div>

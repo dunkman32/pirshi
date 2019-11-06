@@ -1,5 +1,5 @@
 import React from 'react';
-import { lighten, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -7,24 +7,20 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import { AddCircle, ThumbDown, ThumbUp } from '@material-ui/icons';
-import AlertDialogSlide from './modal';
-import Typography from '@material-ui/core/Typography';
-import Toolbar from '@material-ui/core/Toolbar';
+import { ThumbDown, ThumbUp } from '@material-ui/icons';
 import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
 
 const columns = [
-  { id: 'text', label: 'text', minWidth: 150 },
-  { id: 'owner', label: 'owner', minWidth: 150 },
+  { id: 'text', label: 'სიტყვა', minWidth: 150 },
+  { id: 'owner', label: 'ავტორი', minWidth: 150 },
   {
     id: 'rating',
-    label: 'rating',
+    label: 'რეიტინგი',
     minWidth: 100,
   },
   {
     id: 'actions',
-    label: 'actions',
+    label: 'ქმედება',
     minWidth: 50,
   },
 ];
@@ -39,66 +35,63 @@ const useStyles = makeStyles({
     margin: 'auto'
   },
   tableWrapper: {
-    maxHeight: 400,
+    maxHeight: 'max-content',
     overflow: 'auto',
   }
 });
 
-const useToolbarStyles = makeStyles(theme => ({
-  root: {
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(1),
-    backgroundColor: '#8e24aa'
-  },
-  highlight:
-    theme.palette.type === 'light'
-      ? {
-        color: theme.palette.secondary.main,
-        backgroundColor: lighten(theme.palette.secondary.light, 0.85),
-      }
-      : {
-        color: theme.palette.text.primary,
-        backgroundColor: theme.palette.secondary.dark,
-      },
-  title: {
-    flex: '1 1 100%',
-    fontWeight: 24,
-    color: '#fff'
-  },
-  icon: {
-    cursor: 'pointer',
-    width: 32,
-    height: 32,
-    color: '#fff'
-  },
-  pointer: {
-    cursor: 'pointer',
-  }
-}));
-const EnhancedTableToolbar = props => {
-  const classes = useToolbarStyles();
-  const { handleClickOpen } = props;
-  return (
-    <Toolbar className={classes.root}>
-      <Typography className={classes.title} variant="h6" id="tableTitle">
-        {/*შენი პირში ...*/}
-      </Typography>
-      <Tooltip title="Filter list">
-        <IconButton aria-label="filter list" onClick={handleClickOpen}>
-          <AddCircle className={classes.icon}/>
-        </IconButton>
-      </Tooltip>
-    </Toolbar>
-  );
-};
+// const useToolbarStyles = makeStyles(theme => ({
+//   root: {
+//     paddingLeft: theme.spacing(2),
+//     paddingRight: theme.spacing(1),
+//     backgroundColor: '#8e24aa'
+//   },
+//   highlight:
+//     theme.palette.type === 'light'
+//       ? {
+//         color: theme.palette.secondary.main,
+//         backgroundColor: lighten(theme.palette.secondary.light, 0.85),
+//       }
+//       : {
+//         color: theme.palette.text.primary,
+//         backgroundColor: theme.palette.secondary.dark,
+//       },
+//   title: {
+//     flex: '1 1 100%',
+//     fontWeight: 24,
+//     color: '#fff'
+//   },
+//   icon: {
+//     cursor: 'pointer',
+//     width: 32,
+//     height: 32,
+//     color: '#fff'
+//   },
+//   pointer: {
+//     cursor: 'pointer',
+//   }
+// }));
+// const EnhancedTableToolbar = props => {
+//   const classes = useToolbarStyles();
+//   const { handleClickOpen } = props;
+//   return (
+//     <Toolbar className={classes.root}>
+//       <Typography className={classes.title} variant="h6" id="tableTitle">
+//         {/*შენი პირში ...*/}
+//       </Typography>
+//       <Tooltip title="Filter list">
+//         <IconButton aria-label="filter list" onClick={handleClickOpen}>
+//           <AddCircle className={classes.icon}/>
+//         </IconButton>
+//       </Tooltip>
+//     </Toolbar>
+//   );
+// };
 
 const StickyHeadTable = (props) => {
   const classes = useStyles();
-  const { rows, add, like } = props;
+  const { rows, like } = props;
   const [page, setPage] = React.useState(0);
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState('');
-  const [owner, setOwner] = React.useState('');
 
   const likeOrDislike = (data, isLikeAction) => {
     if (isLikeAction) {
@@ -108,26 +101,6 @@ const StickyHeadTable = (props) => {
     }
   };
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const submit = () => {
-    add({ owner, text: value, date: Date.now() });
-    setOpen(false);
-  };
-
-  const handleChange = (value) => {
-    setValue(value);
-  };
-
-  const handleChangeOwner = (value) => {
-    setOwner(value);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   const handleChangePage = (event, newPage) => {
@@ -141,7 +114,7 @@ const StickyHeadTable = (props) => {
 
   return (
     <Paper className={classes.root}>
-      <EnhancedTableToolbar handleClickOpen={handleClickOpen}/>
+      {/*<EnhancedTableToolbar handleClickOpen={handleClickOpen}/>*/}
       <div className={classes.tableWrapper}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -163,10 +136,7 @@ const StickyHeadTable = (props) => {
                 <TableRow hover role="checkbox" tabIndex={-1} key={row.text}>
                   {columns.map(column => {
                     const value = row[column.id];
-                    return column.id !== 'actions' ? (
-                      <TableCell key={column.id}>
-                        {value}
-                      </TableCell>) : (
+                    return column.id === 'actions' ?
                       <TableCell key={column.id}>
                         <IconButton aria-label="filter list" onClick={likeOrDislike.bind(this, row, true)}>
                           <ThumbUp style={{ cursor: 'pointer', color: 'green' }}/>
@@ -175,7 +145,13 @@ const StickyHeadTable = (props) => {
                           <ThumbDown style={{ cursor: 'pointer', color: 'red' }}/>
                         </IconButton>
                       </TableCell>
-                    );
+                      : column.id === 'text' ?
+                        <TableCell key={column.id}>
+                          {`შენი პირში - ${value}`}
+                        </TableCell> :
+                        <TableCell key={column.id}>
+                          {value}
+                        </TableCell>;
                   })}
                 </TableRow>
               );
@@ -198,14 +174,6 @@ const StickyHeadTable = (props) => {
         onChangePage={handleChangePage}
         onChangeRowsPerPage={handleChangeRowsPerPage}
       />
-      <AlertDialogSlide
-        open={open}
-        submit={submit}
-        value={value}
-        owner={owner}
-        handleChange={handleChange}
-        handleChangeOwner={handleChangeOwner}
-        handleClose={handleClose}/>
     </Paper>
   );
 };

@@ -74,14 +74,15 @@ const AlertDialogSlide = (props) => {
           value={owner}
           margin="normal"
           variant="outlined"
+          autoFocus={true}
         />
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} color="secondary">
-          Close
+          დახურვა
         </Button>
         <Button onClick={submit} color="primary">
-          save
+          შენახვა
         </Button>
       </DialogActions>
     </Dialog>
