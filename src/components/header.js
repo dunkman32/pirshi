@@ -1,9 +1,7 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core';
 import AlertDialogSlide from './modal';
 import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -28,7 +26,7 @@ const useStyles = makeStyles(theme => ({
   h4: {
     display: 'inline-block',
     verticalAlign: 'top',
-    margin: '30px 10px 0 10px'
+    margin: '30px 0 0 10px'
   },
   inputDiv: {
     display: 'inline-block',
@@ -66,30 +64,26 @@ const Header = props => {
 
   return (
     <div className={classes.header}>
-      {/*<Grid container className={classes.root}>*/}
-      {/*  <Paper>*/}
-          <h2 className={classes.h4}>შენი პირში</h2>
-          <div className={classes.inputDiv}>
-            <TextField
-              id="outlined-basic"
-              className={classes.textField}
-              label="სიტყვა"
-              onChange={e => {
-                setValue(e.target.value);
-              }}
-              value={value}
-              margin="normal"
-              variant="outlined"
-              onKeyPress={(ev) => {
-                if (ev.key === 'Enter') {
-                  handleClickOpen()
-                  ev.preventDefault();
-                }
-              }}
-            />
-          </div>
-        {/*</Paper>*/}
-      {/*</Grid>*/}
+      <h2 className={classes.h4}>შენი პირში - </h2> {' '}
+      <div className={classes.inputDiv}>
+        <TextField
+          id="outlined-basic"
+          className={classes.textField}
+          label="რას იზამდი?"
+          onChange={e => {
+            setValue(e.target.value);
+          }}
+          value={value}
+          margin="normal"
+          variant="outlined"
+          onKeyPress={(ev) => {
+            if (ev.key === 'Enter') {
+              handleClickOpen();
+              ev.preventDefault();
+            }
+          }}
+        />
+      </div>
       <AlertDialogSlide
         open={open}
         submit={submit}
