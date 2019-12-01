@@ -1,16 +1,12 @@
 import axios from 'axios';
 
-const headers = {
-  'Content-Type': 'application/json',
-  'Access-Control-Allow-Origin': '*'
-};
 
-const URL = 'https://ijtc2i4he1.execute-api.eu-central-1.amazonaws.com/api';
+const URL = 'https://2c2b5d0syf.execute-api.eu-central-1.amazonaws.com/default/find-pirshi';
 
-const read = () => axios.get(URL, { headers });
+const read = () => axios.get('https://2c2b5d0syf.execute-api.eu-central-1.amazonaws.com/default/find-pirshi');
 
-const write = data => axios.post(URL, data, { headers });
+const write = data => axios.post('https://2c2b5d0syf.execute-api.eu-central-1.amazonaws.com/default/save-pirshi', data);
 
-const update = data => axios.put(URL, data, { headers });
+const update = data => axios.put('https://2c2b5d0syf.execute-api.eu-central-1.amazonaws.com/default/put-pirshi', data);
 
 export { read, write, update };
