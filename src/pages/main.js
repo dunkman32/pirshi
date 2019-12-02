@@ -18,6 +18,11 @@ import IconButton from '@material-ui/core/IconButton';
 import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 import ReactLoading from 'react-loading';
+import {
+  BrowserView,
+  MobileView,
+} from 'react-device-detect';
+import MobileViewComponent from '../components/mobile-view';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -184,17 +189,27 @@ const Main = props => {
   // const color = props.color || '#8e24aa';
   return (rows && rows.length) && (
     <div className={classes.root}>
-      <Grid className={classes.grid} container spacing={3}>
-        <Grid className={classes.grid} style={{ minHeight: 75 }} item xs={12}>
-          <Header add={add}/>
+      <BrowserView>
+        <Grid className={classes.grid} container spacing={3}>
+          <Grid className={classes.grid} style={{ minHeight: 75 }} item xs={12}>
+            <Header add={add}/>
+          </Grid>
+          <Grid className={classes.grid} item xs={12}>
+            <StickyHeadTable rows={rows} like={like} add={add}/>
+          </Grid>
+          <Grid className={classes.grid} item xs={12}>
+            <Footer/>
+          </Grid>
         </Grid>
-        <Grid className={classes.grid} item xs={12}>
-          <StickyHeadTable rows={rows} like={like} add={add}/>
-        </Grid>
-        <Grid className={classes.grid} item xs={12}>
-          <Footer/>
-        </Grid>
-      </Grid>
+
+      </BrowserView>
+      <MobileView>
+        <div style={{height: 80}}>
+        <Header add={add}/>
+        </div>
+        <MobileViewComponent rows={rows} like={like} add={add}/>
+        <Footer/>
+      </MobileView>
       <Snackbar
         anchorOrigin={{
           vertical: 'bottom',

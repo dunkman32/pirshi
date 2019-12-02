@@ -94,6 +94,7 @@ const StickyHeadTable = (props) => {
   const [page, setPage] = React.useState(0);
 
   const likeOrDislike = (data, isLikeAction) => {
+    console.log(data);
     if (isLikeAction) {
       like({ text: data.text, rating: 1 });
     } else {
