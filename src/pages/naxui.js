@@ -7,14 +7,17 @@ import {
   BrowserView,
   MobileView,
 } from 'react-device-detect';
+import ParticlesBackground from '../components/particles-background';
 
 const Naxui = () => {
-  const color = randomColor({ luminosity: 'dark' });
+  const color = randomColor();
+  const colorFooter = randomColor({ luminosity: 'light' });
   return (
     <>
       <Header notfixed/>
       <BrowserView>
-        <div style={{ fontSize: 72, fontWeight: 'bolder', marginTop: '22%', color,  padding: 20 }}>
+        <ParticlesBackground numbers={100}/>
+        <div style={{ fontSize: 72, fontWeight: 'bolder', marginTop: '22%', color,  padding: 20}}>
           <Random
             text={'იძი ნახუი...'}
             paused={false}
@@ -26,6 +29,7 @@ const Naxui = () => {
         </div>
       </BrowserView>
       <MobileView>
+        <ParticlesBackground numbers={45}/>
         <div style={{ fontSize: 40, fontWeight: 'bolder', marginTop: '60%', color, padding: 20 }}>
           <Random
             text={'იძი ნახუი...'}
@@ -37,7 +41,9 @@ const Naxui = () => {
           />
         </div>
       </MobileView>
-      <Footer fixed/>
+      <div style={{color: colorFooter}}>
+        <Footer color={colorFooter} fixed/>
+      </div>
     </>
   );
 };

@@ -33,7 +33,6 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     minHeight: '100vh',
     fontFamily: '\'Lobster\', cursive',
-    // backgroundColor: '#000000'
   },
   fixed: {
     position: 'absolute',

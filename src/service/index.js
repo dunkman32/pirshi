@@ -1,8 +1,5 @@
 import axios from 'axios';
 
-
-const URL = 'https://2c2b5d0syf.execute-api.eu-central-1.amazonaws.com/default/find-pirshi';
-
 const read = () => axios.get('https://2c2b5d0syf.execute-api.eu-central-1.amazonaws.com/default/find-pirshi');
 
 const write = data => axios.post('https://2c2b5d0syf.execute-api.eu-central-1.amazonaws.com/default/save-pirshi', data);

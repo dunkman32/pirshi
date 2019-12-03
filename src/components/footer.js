@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     bottom: 0,
     padding: '15px 0',
-    color: '#000'
+    // color: '#000'
   },
   nonFixed: {
     padding: '15px 0',
