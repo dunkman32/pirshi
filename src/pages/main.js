@@ -192,7 +192,7 @@ const Main = props => {
       <BrowserView>
         <Grid className={classes.grid} container spacing={3}>
           <Grid className={classes.grid} style={{ minHeight: 75 }} item xs={12}>
-            <Header add={add}/>
+            <Header main add={add}/>
           </Grid>
           <Grid className={classes.grid} item xs={12}>
             <StickyHeadTable rows={rows} like={like} add={add}/>
@@ -204,8 +204,8 @@ const Main = props => {
 
       </BrowserView>
       <MobileView>
-        <div style={{height: 80}}>
-        <Header add={add}/>
+        <div style={{ height: 'max-content' }}>
+          <Header main notFixed add={add}/>
         </div>
         <MobileViewComponent rows={rows} like={like} add={add}/>
         <Footer/>
