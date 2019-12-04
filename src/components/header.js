@@ -4,7 +4,7 @@ import AlertDialogSlide from './modal';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
-import { isMobile, BrowserView, MobileView } from 'react-device-detect';
+import { isMobile } from 'react-device-detect';
 import clsx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
@@ -48,7 +48,7 @@ const useStyles = makeStyles(theme => ({
 
 const Header = props => {
   const classes = useStyles();
-  const { add, notFixed, main } = props;
+  const { add, notFixed, main, handleClick } = props;
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState('');
   const [owner, setOwner] = React.useState('');
@@ -58,8 +58,15 @@ const Header = props => {
   };
 
   const submit = () => {
-    add({ owner, text: value, date: Date.now() });
-    setOpen(false);
+    const regex = RegExp('ზურა*|zura*|ზ.გ.კ*|ზგკ*');
+    if (regex.test(owner)) {
+      handleClick('error', `ვერ დეემატა! იმიზა რომე ( ${owner} ) არ მოსულა`);
+    } else if (regex.test(value)) {
+      handleClick('error', `ვერ დეემატა! იმიზა რომე ( ${value} ) არ მოსულა`);
+    } else {
+      add({ owner, text: value, date: Date.now() });
+      setOpen(false);
+    }
   };
 
   const handleChange = (value) => {

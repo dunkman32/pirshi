@@ -175,7 +175,6 @@ const Main = props => {
       handleClick('success', 'დეემატა!');
     }).catch(e => {
       handleClick('error', 'ვერ დეემატა!');
-      console.log('errori ara ყლე', e);
     });
   };
 
@@ -191,7 +190,7 @@ const Main = props => {
       <BrowserView>
         <Grid className={classes.grid} container spacing={3}>
           <Grid className={classes.grid} style={{ minHeight: 75 }} item xs={12}>
-            <Header main add={add}/>
+            <Header main add={add} handleClick={handleClick}/>
           </Grid>
           <Grid className={classes.grid} item xs={12}>
             <StickyHeadTable rows={rows} like={like} add={add}/>
