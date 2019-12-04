@@ -6,6 +6,7 @@ import Footer from '../components/footer';
 import {
   BrowserView,
   MobileView,
+  isMobile
 } from 'react-device-detect';
 import ParticlesBackground from '../components/particles-background';
 
@@ -15,8 +16,8 @@ const Naxui = () => {
   return (
     <>
       <Header notfixed/>
+      <ParticlesBackground numbers={isMobile? 45: 100}/>
       <BrowserView>
-        <ParticlesBackground numbers={100}/>
         <div style={{ fontSize: 72, fontWeight: 'bolder', marginTop: '22%', color,  padding: 20}}>
           <Random
             text={'იძი ნახუი...'}
@@ -29,7 +30,6 @@ const Naxui = () => {
         </div>
       </BrowserView>
       <MobileView>
-        <ParticlesBackground numbers={45}/>
         <div style={{ fontSize: 40, fontWeight: 'bolder', marginTop: '60%', color, padding: 20 }}>
           <Random
             text={'იძი ნახუი...'}
