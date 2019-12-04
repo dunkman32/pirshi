@@ -4,7 +4,8 @@ import AlertDialogSlide from './modal';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
-import { isMobile} from 'react-device-detect';
+import { isMobile, BrowserView, MobileView } from 'react-device-detect';
+import clsx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,14 +26,23 @@ const useStyles = makeStyles(theme => ({
     color: '#FFF',
     margin: '0 2.5px'
   },
-  h4: {
+  inline: {
     display: 'inline-block',
     verticalAlign: 'top',
     margin: '30px 0 0 10px'
   },
+  centered: {
+    display: 'block',
+    padding: '30px 0 10px 0',
+    textAlign: 'center',
+    margin: 0
+  },
+  block: {
+    display: 'block',
+    margin: 0
+  },
   inputDiv: {
     display: 'inline-block',
-    verticalAlign: 'top'
   }
 }));
 
@@ -67,8 +77,12 @@ const Header = props => {
   return (
     <div style={!notFixed ? { position: 'fixed' } : {}} className={classes.header}>
       {main ? <>
-          <h2 className={classes.h4}>შენი პირში - </h2> {' '}
-          <div className={classes.inputDiv}>
+          {isMobile ?
+            <h2 className={classes.centered}>შენი პირში</h2> :
+            <h2 className={classes.inline}>შენი პირში - </h2>
+          }
+          {' '}
+          <div className={clsx(isMobile ? classes.block : classes.inputDiv)} style={{ verticalAlign: 'top' }}>
             <TextField
               id="outlined-basic"
               className={classes.textField}
@@ -79,6 +93,7 @@ const Header = props => {
               value={value}
               margin="normal"
               variant="outlined"
+              style={isMobile ? { width: '90%', marginLeft: '5%' } : {}}
               onKeyPress={(ev) => {
                 if (ev.key === 'Enter') {
                   handleClickOpen();
@@ -95,14 +110,16 @@ const Header = props => {
             handleChange={handleChange}
             handleChangeOwner={handleChangeOwner}
             handleClose={handleClose}/>
-          <Link to={'/naxui'}>
+          <Link to={'/naxui'} style={{
+            textDecoration: 'none'
+          }}>
             <Button
               style={!isMobile ? {
                 position: 'absolute',
                 right: 10,
                 top: 20,
                 color: 'white',
-                fontWeight: 'bold'
+                fontWeight: 'bold',
               } : {
                 color: 'white',
                 fontWeight: 'bold',
@@ -120,7 +137,9 @@ const Header = props => {
           height: 70,
           backgroundColor: 'rgba(142, 36, 170, .9)'
         }}>
-          <Link to={'/'}>
+          <Link to={'/'} style={{
+            textDecoration: 'none'
+          }}>
             <Button style={{ position: 'absolute', left: 10, top: 20, color: 'white', fontWeight: 'bold' }}>
               უკან
             </Button>
