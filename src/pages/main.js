@@ -203,7 +203,7 @@ const Main = props => {
       </BrowserView>
       <MobileView>
         <div style={{ height: 'max-content' }}>
-          <Header main notFixed add={add}/>
+          <Header main notFixed add={add} handleClick={handleClick}/>
         </div>
         <MobileViewComponent rows={rows} like={like} add={add}/>
         <Footer/>
