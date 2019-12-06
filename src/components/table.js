@@ -7,9 +7,10 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import { ThumbDown, ThumbUp } from '@material-ui/icons';
+import { ThumbDown, ThumbUp, OpenInNew } from '@material-ui/icons';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
+import {Link} from 'react-router-dom';
 
 const columns = [
   { id: 'text', label: 'რა ქნა?', minWidth: 150 },
@@ -120,6 +121,13 @@ const StickyHeadTable = (props) => {
             <IconButton aria-label="filter list" onClick={likeOrDislike.bind(this, row, true)}>
               <ThumbUp style={{ cursor: 'pointer', color: 'green' }}/>
             </IconButton>
+          </Tooltip>
+          <Tooltip title="გადასვლა" placement={'top'}>
+            <Link to={`/single/${row.text}`}>
+              <IconButton aria-label="filter list">
+                <OpenInNew style={{ cursor: 'pointer', color: '#d4af37' }}/>
+              </IconButton>
+            </Link>
           </Tooltip>
           <Tooltip title="ცუდია" placement={'top'}>
             <IconButton aria-label="filter list" onClick={likeOrDislike.bind(this, row, false)}>

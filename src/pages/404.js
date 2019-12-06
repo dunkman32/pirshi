@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
 const _404 = () => {
   const color = randomColor({ luminosity: 'dark' });
   const classes = useStyles();
-  return <div style={{ fontFamily: '\'Lobster\', cursive' }}>
+  return <div>
     {isMobile ?
       <>
         <h1 className={classes.text404Browser} style={{ color }}>404</h1>

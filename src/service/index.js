@@ -6,4 +6,6 @@ const write = data => axios.post('https://2c2b5d0syf.execute-api.eu-central-1.am
 
 const update = data => axios.put('https://2c2b5d0syf.execute-api.eu-central-1.amazonaws.com/default/put-pirshi', data);
 
-export { read, write, update };
+const findOne = name => axios.get(`https://2c2b5d0syf.execute-api.eu-central-1.amazonaws.com/default/find-one?name=${name}`);
+
+export { read, write, update, findOne };

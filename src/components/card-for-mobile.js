@@ -2,7 +2,8 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Paper } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
-import { ThumbDown, ThumbUp } from '@material-ui/icons';
+import { OpenInNew, ThumbDown, ThumbUp } from '@material-ui/icons';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -58,6 +59,11 @@ const CardForMobile = props => {
             >
               <ThumbUp style={{ cursor: 'pointer', color: 'green' }}/>
             </IconButton>
+              <Link to={`/single/${row.text}`}>
+                <IconButton aria-label="filter list">
+                  <OpenInNew style={{ cursor: 'pointer', color: '#d4af37' }}/>
+                </IconButton>
+              </Link>
             <IconButton aria-label="filter list"
                         onClick={likeOrDislike.bind(this, row, false)}
             >
